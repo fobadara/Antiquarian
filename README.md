@@ -1,13 +1,14 @@
-### Math Magicians
+### Antiquarian
 
 ## Description 🏗️
 
-"Math magicians" is a website for all fans of mathematics. It is a Single Page App (SPA) that allows users to:
+Antiquarian is a website that keeps track of your books both old and new.
 
-  1.  Make simple calculations.
-  2.  Read a random math-related quote.
+   1. Display a list of books.
+   2. Add a book.
+   3. Remove a selected book.
 
-||             Math magicians ||
+||             Antiquarian ||
 |-|-----------------------------------|-|
 ||![screenshot](./src/img/screen.gif)||
 
@@ -31,7 +32,7 @@ To get a local copy up and running follow these simple example steps.
 > Clone the app by running this command
 
 ```bash 
-git clone https://github.com/fobadara/math-magicians-react.git
+git clone https://github.com/fobadara/antiquarian.git
 ```
 > Make sure you install the dependencies by runing this command
 
