@@ -1,15 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import AddBook from './addbook';
+import RemoveButton from './remove';
 
-const Books = (props) => {
+const Books = () => {
+  const booksReducer = useSelector((state) => state.booksReducer);
   const elements = [];
-  const { books } = props;
-  books.forEach((element) => {
+  booksReducer.forEach((book) => {
     elements.push(
-      <div key={element.id}>
-        {element.title}
-        <span> Remove</span>
+      <div key={book.id}>
+        {book.title}
+        <RemoveButton id={book.id} />
       </div>,
     );
   });
@@ -20,15 +21,6 @@ const Books = (props) => {
       <AddBook />
     </div>
   );
-};
-
-Books.propTypes = {
-  books: PropTypes.arrayOf(
-    PropTypes.shape({
-      code: PropTypes.string,
-      id: PropTypes.number,
-    }),
-  ).isRequired,
 };
 
 export default Books;
