@@ -10,7 +10,7 @@ const Books = () => {
     elements.push(
       <div key={book.id}>
         {book.title}
-        <RemoveButton id={book.id} />
+        <RemoveButton id={book.id} key={book.id} />
       </div>,
     );
   });

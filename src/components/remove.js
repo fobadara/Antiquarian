@@ -4,10 +4,13 @@ import { removeBook } from '../redux/books/books';
 
 const RemoveButton = (props) => {
   const { id } = props;
-  const dispatch = useDispatch(removeBook(id));
+  console.log(id);
+  const dispatch = useDispatch();
 
   const removeBookFromStore = () => {
-    dispatch(removeBook(id));
+    if (id) {
+      dispatch(removeBook(id));
+    }
   };
 
   return (
