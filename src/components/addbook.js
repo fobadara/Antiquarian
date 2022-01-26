@@ -21,7 +21,6 @@ const AddBook = () => {
     method: 'POST', itemId: '', body: JSON.stringify(state), actionCreator: addBook,
   };
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
     if (state.title.trim() && state.category.trim()) {

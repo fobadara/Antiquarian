@@ -1,6 +1,3 @@
-import { useDispatch } from 'react-redux';
-// import consumeApi from '../../components/api';
-
 const CONSUME_API_BEGIN = 'antiquarian/books/CONSUME_API_BEGIN';
 const GET_ERROR = 'antiquarian/books/GET_ERROR';
 const ADD_BOOK = 'antiquarian/books/ADD_BOOK';
@@ -41,26 +38,27 @@ export const consumeApi = (params) => ((dispatch) => {
   const {
     method, body, itemId, actionCreator,
   } = params;
-  console.log(body)
   const baseUrl = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/tWY3c29a1dHLDQJJS36r/books';
-  // dispatch(consumeApiBegin());
-  fetch('https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/tWY3c29a1dHLDQJJS36r/books', {
+  // show loading text
+  dispatch(consumeApiBegin());
+  // fetch based on parameters
+  fetch(`${baseUrl}/${itemId}`, {
     method,
     body,
     headers: {
       'Content-Type': 'application/json',
     },
-  }).then((response) => response.json())
+    // Necessary because get returns json.
+    // Absence of condition causes the json.parse error line 1 column 1
+  }).then((response) => ((method === 'GET') ? response.json() : response.text()))
     .then((response) => {
       const data = response;
-      console.log(data)
-      // Either getBooks addBooks or deleteBooks
+      // Either getBooks, addBooks or deleteBooks
       dispatch(actionCreator(data));
-    })
-    // .catch((error) => {
-    //   const errorMessage = error.message;
-    //   dispatch(getError(errorMessage));
-    // });
+    }).catch((error) => {
+      const errorMessage = error.message;
+      dispatch(getError(errorMessage));
+    });
 }
 );
 
@@ -72,7 +70,6 @@ const initialState = {
 };
 
 const booksReducer = (state = initialState, action) => {
-  // console.log(action.payload)
   switch (action.type) {
     case CONSUME_API_BEGIN:
       return { ...state, status: false, loading: true };
@@ -82,13 +79,16 @@ const booksReducer = (state = initialState, action) => {
       return { ...state, loading: false, data: Object.entries(action.payload) };
 
     case REMOVE_BOOK:
-      return state.data.filter((book) => book.id !== action.payload);
+      return ({
+        ...state,
+        data: state.data.filter((book) => book.id !== action.payload),
+        status: action.payload,
+      });
     case GET_ERROR:
       return { ...state, loading: false, error: action.payload };
     default:
       return state;
   }
-  console.log(action.payload)
 };
 
 export default booksReducer;

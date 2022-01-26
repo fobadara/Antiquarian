@@ -4,7 +4,6 @@ import { consumeApi, removeBook } from '../redux/books/books';
 
 const RemoveButton = (props) => {
   const { id } = props;
-  console.log(id)
   const remove = {
     method: 'DELETE', itemId: id, body: JSON.stringify({ item_id: id }), actionCreator: removeBook,
   };

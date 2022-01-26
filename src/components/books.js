@@ -13,7 +13,7 @@ const Books = ({ consumeApi }) => {
     setTimeout(() => {
       setState({ ...state, state: '' });
       consumeApi();
-    }, 500);
+    }, 300);
   }, [booksReducer.status]);
 
   const { loading } = booksReducer;
@@ -46,6 +46,7 @@ const Books = ({ consumeApi }) => {
       {loading && <h2>Loading...</h2>}
       {error && !loading && <h2>{error}</h2>}
       {status && !error && <h2>{status}</h2>}
+      {books.length === 0 && !error && <h2>The store is currently empty. Please add a book.</h2>}
       {books && (
         <>
           {books}
