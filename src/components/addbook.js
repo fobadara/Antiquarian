@@ -1,19 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { consumeApi, addBook } from '../redux/books/books';
 
 const AddBook = () => {
   const [state, setState] = useState({
-    item_id: uuidv4(),
+    item_id: '',
     title: '',
-    author: '',
     category: '',
   });
 
+  // save input to state on change
   const handleChange = (param) => {
-    setState({ ...state, [param.target.name]: param.target.value });
-    // console.log(state);
+    setState({ ...state, item_id: uuidv4(), [param.target.name]: param.target.value });
   };
 
   const dispatch = useDispatch();
@@ -21,16 +20,21 @@ const AddBook = () => {
   const post = {
     method: 'POST', itemId: '', body: JSON.stringify(state), actionCreator: addBook,
   };
-  // const initialState = {
-  //   data: [],
-  //   status: false,
-  //   loading: false,
-  //   error: null,
-  // };
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(consumeApi(post));
+    if (state.title.trim() && state.category.trim()) {
+      dispatch(consumeApi(post));
+      const input = document.querySelectorAll('input');
+      input.forEach((currentItem) => {
+        const input = currentItem;
+        if (input) {
+          setState({ ...state, status: false });
+          input.value = '';
+        }
+      });
+    }
   };
 
   return (
