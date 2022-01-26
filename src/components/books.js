@@ -1,62 +1,57 @@
 import { useEffect, useState } from 'react';
-import { useSelector, useDispatch, connect } from 'react-redux';
+import { useSelector, connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { consumeApi, getBook } from '../redux/books/books';
 import AddBook from './addbook';
 import RemoveButton from './remove';
 
-const Books = ({ bookData, consumeApi }) => {
-  const get = {
-    method: 'GET', itemId: '', actionCreator: getBook,
-  };
-
+const Books = ({ consumeApi }) => {
   const booksReducer = useSelector((state) => state.booksReducer);
-  // const [state, setState] = useState();
-  // const dispatch = useDispatch();
-  console.log(booksReducer)
+  const [state, setState] = useState();
 
   useEffect(() => {
     setTimeout(() => {
-      // setState({ ...state, state: '' })
+      setState({ ...state, state: '' });
       consumeApi();
-    }, 800);
-  }, []);
-  // [booksReducer.status]);
+    }, 500);
+  }, [booksReducer.status]);
 
   const { loading } = booksReducer;
   const { error } = booksReducer;
   const { status } = booksReducer;
+  let books;
   // Array of books
-  const books = booksReducer.data.map((value) => (
-    // {console.log(booksReducer)}
-    <div key={value[0]}>
-      <span>
-        {value[1][0].category}
-        {' '}
-      </span>
-      <span>
-        {value[1][0].title}
-        {' '}
-      </span>
-      <span>
-        {value[1][0].author}
-        {' '}
-      </span>
-      <RemoveButton id={value[0]} />
-    </div>
-  ));
+  if (booksReducer.data) {
+    books = booksReducer.data.map((value) => (
+      <div key={value[0]}>
+        <span>
+          {value[1][0].category}
+          {' '}
+        </span>
+        <span>
+          {value[1][0].title}
+          {' '}
+        </span>
+        <span>
+          {value[1][0].author}
+          {' '}
+        </span>
+        <RemoveButton id={value[0]} />
+      </div>
+    ));
+  }
 
   return (
     <div className="Home">
       {loading && <h2>Loading...</h2>}
       {error && !loading && <h2>{error}</h2>}
-      {status && !loading && !error && <h2>{status}</h2>}
+      {status && !error && <h2>{status}</h2>}
       {books && (
         <>
           {books}
           <AddBook />
         </>
       )}
-      ;
     </div>
   );
 };
@@ -69,9 +64,14 @@ const mapDispatchToProps = (dispatch) => {
   const get = {
     method: 'GET', itemId: '', actionCreator: getBook,
   };
+
   return {
     consumeApi: () => dispatch(consumeApi(get)),
   };
+};
+
+Books.propTypes = {
+  consumeApi: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Books);
