@@ -4,7 +4,6 @@ import { removeBook } from '../redux/books/books';
 
 const RemoveButton = (props) => {
   const { id } = props;
-  console.log(id);
   const dispatch = useDispatch();
 
   const removeBookFromStore = () => {
