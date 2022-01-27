@@ -41,7 +41,6 @@ const AddBook = () => {
       <h2>Add New Book</h2>
       <form action="#">
         <input type="text" name="title" id="title" onChange={handleChange} placeholder="Book title" required />
-        <input type="text" name="author" id="author" onChange={handleChange} placeholder="Author" required />
         <select name="category" id="category" defaultValue="Select genre" onChange={handleChange} required>
           <option value="default" hidden>Select genre</option>
           <option value="crime">Crime</option>

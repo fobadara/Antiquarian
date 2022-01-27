@@ -14,7 +14,7 @@ const RemoveButton = (props) => {
   };
 
   return (
-    <button type="button" id={id} onClick={removeBookFromStore}>Remove</button>
+    <button type="button" className="" onClick={removeBookFromStore}>Remove</button>
   );
 };
 
