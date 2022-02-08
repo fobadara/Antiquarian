@@ -2,6 +2,10 @@
 
 ## Description 🏗️
 
+**Live Demo 💻**
+ 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e1f2358f-7977-417d-9134-89ecdf169f1c/deploy-status)](https://app.netlify.com/sites/antiquarian/deploys)
+
 Antiquarian is a website that keeps track of your books both old and new.
 
    1. Display a list of books.
@@ -10,7 +14,7 @@ Antiquarian is a website that keeps track of your books both old and new.
 
 ||             Antiquarian ||
 |-|-----------------------------------|-|
-||![screenshot](./src/img/screen.gif)||
+||![screenshot](src/images/antiquarian.gif)||
 
 ||Built With 🔨 ||
 |-|-------------|-|
