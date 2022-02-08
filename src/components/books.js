@@ -3,7 +3,9 @@ import { useSelector, connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { consumeApi, getBook } from '../redux/books/books';
 import AddBook from './addbook';
-import RemoveButton from './remove';
+import Section1 from './section1';
+import Completed from './completed';
+import Progress from './progress';
 
 const Books = ({ consumeApi }) => {
   const booksReducer = useSelector((state) => state.booksReducer);
@@ -23,20 +25,30 @@ const Books = ({ consumeApi }) => {
   // Array of books
   if (booksReducer.data) {
     books = booksReducer.data.map((value) => (
-      <div key={value[0]}>
-        <span>
-          {value[1][0].category}
-          {' '}
-        </span>
-        <span>
-          {value[1][0].title}
-          {' '}
-        </span>
-        <span>
-          {value[1][0].author}
-          {' '}
-        </span>
-        <RemoveButton id={value[0]} />
+      <div className="container section" key={value[0]}>
+        <div className="responsive-grid container-2">
+          <div className="" id="book-info">
+            <div style={{ color: 'rgba(12, 12, 12, 0.5)', fontWeight: 'bold', fontSize: '0.8em' }}>
+              {value[1][0].category}
+              {' '}
+            </div>
+            <div>
+              {value[1][0].title}
+              {' '}
+            </div>
+            <div className="med-font" style={{ color: '#4386bf' }}>
+              unknown
+              {' '}
+            </div>
+            <Section1 id={value[0]} />
+          </div>
+          <div className="grow-2" id="completed">
+            <Completed />
+          </div>
+          <div id="progress">
+            <Progress />
+          </div>
+        </div>
       </div>
     ));
   }

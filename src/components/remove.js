@@ -14,7 +14,7 @@ const RemoveButton = (props) => {
   };
 
   return (
-    <button type="button" id={id} onClick={removeBookFromStore}>Remove</button>
+    <button type="button" className="sec1-btn" style={{ borderLeft: 'solid thin rgba(19, 19, 19, 0.2)', borderRight: 'solid thin rgba(19, 19, 19, 0.2)' }} onClick={removeBookFromStore}>Remove</button>
   );
 };
 

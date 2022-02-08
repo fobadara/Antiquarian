@@ -37,12 +37,11 @@ const AddBook = () => {
   };
 
   return (
-    <>
-      <h2>Add New Book</h2>
-      <form action="#">
-        <input type="text" name="title" id="title" onChange={handleChange} placeholder="Book title" required />
-        <input type="text" name="author" id="author" onChange={handleChange} placeholder="Author" required />
-        <select name="category" id="category" defaultValue="Select genre" onChange={handleChange} required>
+    <div className="container section" style={{ marginBottom: '1em' }}>
+      <h2 style={{ opacity: '0.5' }}>Add New Book</h2>
+      <form style={{}} className="flex" action="#">
+        <input type="text" name="title" id="title" style={{ flexGrow: 1 }} onChange={handleChange} placeholder="Book title" required />
+        <select name="category" id="category" style={{ margin: '0 1em' }} defaultValue="Select genre" onChange={handleChange} required>
           <option value="default" hidden>Select genre</option>
           <option value="crime">Crime</option>
           <option value="fantasy">Fantasy</option>
@@ -52,11 +51,11 @@ const AddBook = () => {
           <option value="history">History</option>
           <option value="horror">Horror</option>
         </select>
-        <button type="submit" onClick={handleSubmit}>
+        <button className="blue-btn" type="submit" onClick={handleSubmit}>
           Add Book
         </button>
       </form>
-    </>
+    </div>
   );
 };
 

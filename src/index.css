@@ -1,19 +1,21 @@
+/* General style */
 body {
   margin: 0;
   font-family:
     -apple-system,
     BlinkMacSystemFont,
-    'Segoe UI',
-    'Roboto',
-    'Oxygen',
-    'Ubuntu',
-    'Cantarell',
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
+    "Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell",
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f6fa;
 }
 
 code {
@@ -22,6 +24,90 @@ code {
     Menlo,
     Monaco,
     Consolas,
-    'Courier New',
+    "Courier New",
     monospace;
+}
+
+.section {
+  border: solid 1px #e8e8e8;
+  background-color: #fff;
+  margin-top: 0.2em;
+  padding-top: 0.8em;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  border: solid thin rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  margin: 2em;
+}
+
+.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+}
+
+input,
+select {
+  height: 1.6em;
+}
+
+.blue-btn {
+  height: 2em;
+  background: #0290ff;
+  color: #fff;
+  border: none;
+  border-radius: 0.2em;
+  margin-bottom: 1em;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+}
+
+.container-2 {
+  width: 90%;
+  margin: auto;
+  margin-right: 1em;
+}
+
+.sec1-btn {
+  color: #4386bf;
+  border: none;
+  background-color: #fff;
+  margin: 0 0.1em;
+}
+
+.med-font {
+  font-size: 0.8em;
+  color: black;
+}
+
+.flex {
+  display: flex;
+}
+
+.padding-1 {
+  padding-top: 1em;
+  margin-left: 0.3em;
+}
+
+.company-logo {
+  text-decoration: none;
+  color: blue;
+}
+
+/* Styling for completed */
+.progress-circle {
+  stroke-dasharray: 189;
+  stroke-dashoffset: 189;
+}
+
+@media only screen and (min-width: 300px) {
+  #completed {
+    margin-left: 4em;
+    margin-right: 2em;
+  }
 }
