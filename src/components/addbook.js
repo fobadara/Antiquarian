@@ -8,7 +8,7 @@ const AddBook = () => {
   const submitBookToStore = () => {
     const newBook = {
       id: uuidv4(),
-      title: 'I need API. I am ready for data.',
+      title: 'I need API. I am ready.',
       author: 'human',
     };
 
